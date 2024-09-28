@@ -1,0 +1,30 @@
+name: github-infrastructure
+run-name: Deploy all github-infrastructure
+on: 
+  push: 
+    branches: [main]
+permissions: write-all
+env:
+  KEY: VALUE
+defaults:
+  run:
+    shell: bash
+jobs:
+  github-infrastructure:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: terraform-backend
+        uses: plumber-cd/setup-terraform-backend-git@v1
+      - name: main
+        working-directory: ${{ github.workspace }}
+        run: |
+          terraform-backend-git &
+          terraform version
+          terraform init
+          terraform apply -auto-approve
+    
+
+          
+          
