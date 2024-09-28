@@ -19,18 +19,15 @@ permissions:
   security-events: write
   statuses: write
 env:
-  TF_BACKEND_GIT_HTTP_USERNAME: user
-  TF_BACKEND_GIT_HTTP_PASSWORD: pswd
+  TF_BACKEND_GIT_HTTP_USERNAME: ${{ github.actor }}
+  TF_BACKEND_GIT_HTTP_PASSWORD: ${{ github.token }}
 jobs:
   gitlab-infrastructure:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout-repo
-        uses: actions/checkout@v4
-      - name: setup-terraform-backend
-        uses: plumber-cd/setup-terraform-backend-git@v1
-      - name: tf-apply
-        run: |
+      - uses: actions/checkout@v4
+      - uses: plumber-cd/setup-terraform-backend-git@v1
+      - run: |
           cd ${{ github.workspace }}
           terraform-backend-git &
           terraform version
