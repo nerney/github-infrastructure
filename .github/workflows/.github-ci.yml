@@ -19,8 +19,8 @@ permissions:
   security-events: write
   statuses: write
 env:
-  TF_BACKEND_GIT_HTTP_USERNAME: ${{ github.actor }}
-  TF_BACKEND_GIT_HTTP_PASSWORD: ${{ github.token }}
+  TF_BACKEND_GIT_HTTP_USERNAME: user
+  TF_BACKEND_GIT_HTTP_PASSWORD: pswd
 jobs:
   gitlab-infrastructure:
     runs-on: ubuntu-latest
