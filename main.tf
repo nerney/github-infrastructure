@@ -7,6 +7,7 @@ terraform {
   }
 }
 
+variable "token" { type = string }
 provider "github" {
   token = var.token
 }
