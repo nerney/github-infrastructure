@@ -1,0 +1,16 @@
+name: tf-apply
+on: [push]
+jobs:
+  tf-apply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout-repo
+        uses: actions/checkout@v4
+      - name: setup-terraform-backend
+        uses: plumber-cd/setup-terraform-backend-git@v1
+      - name: tf-apply
+        run: |
+          cd ${{ github.workspace }}
+          terraform-backend-git &
+          terraform init
+          terraform apply -auto-approve
