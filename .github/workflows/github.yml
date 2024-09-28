@@ -10,7 +10,7 @@ jobs:
         uses: plumber-cd/setup-terraform-backend-git@v1
       - name: tf-apply
         env: 
-          TF_VAR_token: ${{ env.GH_TOKEN }}
+          GITLAB_TOKEN: ${{ env.GH_TOKEN }}
         run: |
           cd ${{ github.workspace }}
           terraform-backend-git 2>/dev/null &
