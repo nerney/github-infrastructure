@@ -12,5 +12,6 @@ jobs:
         run: |
           cd ${{ github.workspace }}
           terraform-backend-git 2>/dev/null &
+          terraform version
           terraform init
           terraform apply -auto-approve
