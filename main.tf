@@ -7,6 +7,8 @@ terraform {
     address = local.state
     lock_address = local.state
     unlock_address = local.state
+    username = "user"
+    password = "pswd"
   }
   required_providers {
     github = {
