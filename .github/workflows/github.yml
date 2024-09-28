@@ -1,19 +1,30 @@
-name: tf-apply
-on: [push]
+name: github-infrastructure
+run-name: Deploy all github-infrastructure
+on: 
+  push: 
+    branches: [main]
+permissions: write-all
+env:
+  KEY: VALUE
+defaults:
+  run:
+    shell: bash
 jobs:
-  tf-apply:
+  github-infrastructure:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout-repo
+      - name: checkout
         uses: actions/checkout@v4
-      - name: setup-terraform-backend
+      - name: terraform-backend
         uses: plumber-cd/setup-terraform-backend-git@v1
-      - name: tf-apply
-        env: 
-          GITLAB_TOKEN: ${{ env.GH_TOKEN }}
+      - name: main
+        working-directory: ${{ github.workspace }}
         run: |
-          cd ${{ github.workspace }}
-          terraform-backend-git 2>/dev/null &
+          terraform-backend-git &
           terraform version
           terraform init
           terraform apply -auto-approve
+    
+
+          
+          
