@@ -16,7 +16,4 @@ jobs:
           terraform-backend-git 2>/dev/null &
           terraform version
           terraform init
-          echo "------------------"
-          cat .terraform.lock.hcl
-          echo "------------------"
           terraform apply -auto-approve
